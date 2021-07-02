@@ -1,8 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     :root {
-        --background: #f0f2f5;
         --red: #E52E4D;
         --green: #33CC95;
         --blue: #5429CC;
@@ -76,6 +75,23 @@ export const GlobalStyle = createGlobalStyle`
         padding: 3rem;
         position: relative;
         border-radius: 0.25rem;
+
+				@media (orientation: portrait) {
+					position: absolute;
+					bottom: 0;
+					border-radius: 2rem 2rem 0 0;
+					transition: all .3s ease-out;
+					animation: slideup 0.5s ease-in-out;
+
+					@keyframes slideup {
+						from {
+							height: 0;
+						}
+						to {
+							height: 60%;
+						}
+					}
+				}
     }
 
     .react-modal-close {
@@ -92,4 +108,4 @@ export const GlobalStyle = createGlobalStyle`
             filter: brightness(0.8);
         }
     }
-`
+`;

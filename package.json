@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-responsive": "^8.0.2",
     "axios": "^0.21.1",
     "miragejs": "^0.1.41",
     "polished": "^4.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-modal": "^3.12.1",
+    "react-responsive": "^8.2.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"

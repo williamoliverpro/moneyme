@@ -1,41 +1,62 @@
-import { useTransactions } from '../../hooks/useTransactions'
-import { Container } from './styles'
+import { useContext } from "react";
+import { useMediaQuery } from "react-responsive";
+
+import { Container } from "./styles";
+import { CardList } from "../CardList";
+import { TransactionsContext } from "../../Contexts/TransactionsContext";
 
 export function TransactionsTable() {
-    const { transactions } = useTransactions()
+  const { transactions } = useContext(TransactionsContext);
 
-    return (
-        <Container>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Valor</th>
-                        <th>Categoria</th>
-                        <th>Data</th>
-                    </tr>
-                </thead>
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: "(max-device-width: 1224px)",
+  });
 
-                <tbody>
-                    {transactions.map(transaction => (
-                        <tr key={transaction.id}>
-                            <td>{transaction.title}</td>
-                            <td className={transaction.type}>
-                                {new Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                }).format(transaction.amount)}
-                            </td>
-                            <td>{transaction.category}</td>
-                            <td>
-                                {new Intl.DateTimeFormat('pt-BR').format(
-                                    new Date(transaction.createdAt)
-                                )}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </Container>
-    )
+  return (
+    <Container>
+      {!isTabletOrMobileDevice ? (
+        <table>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Valor</th>
+              <th>Categoria</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.title}</td>
+                <td className={transaction.type}>
+                  {new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(transaction.amount)}
+                </td>
+                <td>{transaction.category}</td>
+                <td>
+                  {new Intl.DateTimeFormat("pt-BR").format(
+                    transaction.createdAt
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        transactions.map((transaction) => (
+          <CardList
+            key={transaction.id}
+            title={transaction.title}
+            type={transaction.type}
+            amount={transaction.amount}
+            category={transaction.category}
+            createdAt={transaction.createdAt}
+          />
+        ))
+      )}
+    </Container>
+  );
 }
