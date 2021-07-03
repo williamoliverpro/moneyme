@@ -5,6 +5,7 @@ export const Container = styled.div`
 
 	@media (max-width: 1120px) {
 		overflow: auto;
+    margin-right: 1rem;
 	}
 
   table {

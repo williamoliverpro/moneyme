@@ -14,7 +14,7 @@ export function TransactionsTable() {
 
   return (
     <Container>
-      {!isTabletOrMobileDevice ? (
+      {!isTabletOrMobileDevice && transactions.length !== 0 ? (
         <table>
           <thead>
             <tr>

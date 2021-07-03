@@ -8,6 +8,10 @@ export const Container = styled.div`
 
   @media (max-width: 1120px) {
     overflow: auto;
+
+    div:last-child {
+      margin-right: 1rem;
+    }
   }
 
   div {
